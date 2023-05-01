@@ -3,7 +3,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class LoginController1 : Controller
+    public class LoginController : Controller
     {
         public IActionResult Login()
         {
