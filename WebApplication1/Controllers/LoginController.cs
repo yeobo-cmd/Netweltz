@@ -5,11 +5,18 @@ namespace WebApplication1.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly ILogger<LoginController> _logger;
+
+        public LoginController(ILogger<LoginController> logger)
+        {
+            _logger = logger;
+        }
+
         public IActionResult Login()
         {
             return View();
         }
-        public List<Usermodel> PutValue()
+        public List<Usermodel> LoginSuccess()
         {
             var users = new List<Usermodel>
             {
@@ -19,9 +26,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Verify(Usermodel user)
+        public IActionResult LoginSuccess(Usermodel user)
         {
-            var u = PutValue();
+            var u = LoginSuccess();
             var un= u.Where(u=>u.username.Equals(user.username));
             var userpassword = u.Where(u => u.password.Equals(user.password));
             if (userpassword.Count() == 1)
@@ -32,7 +39,7 @@ namespace WebApplication1.Controllers
             else
             {
                 ViewBag.message = "Login Failed";
-                return View("Login");
+                return View("errorpage");
             }
         }
      }
